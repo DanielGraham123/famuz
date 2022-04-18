@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <%- include('../../partials/head.ejs') %>
+  <body class="h-full">
+    <%- include ("../../partials/nav.ejs") %>
+    <header
+      class="bg-[url('/images/bg-genre.jpg')] bg-cover bg-center text-center my-auto h-60 w-full py-16 text-white bg-blend-multiply"
+    >
+      <h4 class="text-2xl">
+        Manage your
+        <span
+          class="tracking-wide underline font-bold hover:text-red-400 cursor-pointer"
+          >famuz</span
+        >
+        Categories
+      </h4>
+
+      <button
+        class="text-md bg-pink-600 text-white font-bold py-4 px-6 pr-7 sahdow-md mx-auto mt-5 mb-8 hover:bg-pink-700 rounded-full"
+        type="button"
+        data-modal-toggle="category-modal"
+      >
+        <i class="fad fa-plus-hexagon animate-pulse fa-1x"></i>
+        New Category
+      </button>
+    </header>
+    <% let catg = null; %>
+    <main class="container mx-auto">
+      <div class="grid grid-flow-row grid-cols-4">
+        <!-- side nav -->
+        <%- include ("../../partials/side-nav.ejs") %>
+
+        <!-- categories -->
+        <div class="col-span-3 py-6">
+          <!-- top -->
+          <%- include('../../partials/muz-top.ejs') %>
+
+          <!-- category list -->
+          <div class="grid grid-cols-3 gap-4 mt-6">
+            <% categories.forEach(category => { %>
+            <div
+              class="relative h-48 overflow-hidden bg-cover bg-center bg-blend-multiply rounded-2xl"
+              style="
+                background-image: linear-gradient(
+                    rgba(147, 75, 196, 0.9),
+                    rgba(35, 35, 36, 0.9)
+                  ),
+                  url('<%= category.image %>');
+              "
+              id="<%= category._id %>"
+              data-modal-toggle="category-modal2"
+              onclick="`<% catg = JSON.stringify(category) %>`; openCategory(event, `<%= category._id %>`)"
+            >
+              <div
+                class="flex justify-center items-center h-48 hover:bg-[#1f08177e] hover:cursor-pointer hover:font-semibold"
+              >
+                <h4 class="text-white text-xl m-auto text-center capitalize">
+                  <%= category.name %>
+                </h4>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+
+          <%- include("../../partials/modals/category.ejs") %>
+
+          <!--  -->
+          <%- include("../../partials/modals/category2.ejs") %>
+        </div>
+      </div>
+    </main>
+
+    <%- include ("../../partials/footer.ejs") %>
+
+    <script>
+      let catId = null;
+      let title = document.getElementById("cTitle");
+      let image = document.getElementById("cImage");
+      let catgForm = document.getElementById("editCatgform");
+      let catgDelete = document.getElementById("deleteCatgbtn");
+
+      function openCategory(event, id) {
+        `<%= catgs =
+    JSON.stringify(categories) %>`;
+        let category = JSON.parse(`<%- catg %> `);
+        let categories = JSON.parse(`<%- catgs %> `);
+
+        console.log("opening category id:", id);
+
+        console.log("opening category 2:", category);
+
+        console.log("opening category 3:", categories);
+
+        let thisCat = categories.find((obj) => obj._id === `${id.trim()}`);
+
+        console.log("this cat:", thisCat);
+        catId = thisCat._id;
+
+        catgForm.action = "/muz-center/categories/" + thisCat._id;
+        title.value = thisCat.name;
+        image.value = thisCat.image;
+
+        fetch("/muz-center/categories/cat_edit", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(thisCat),
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log("catedit: ", json);
+          })
+          .catch((err) => console.error(err));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <%- include('./partials/head.ejs') %>
+  <body class="h-full">
+    <!-- <h1 class="text-4xl font-bold underline">Hello world!</h1> -->
+
+    <%- include ("./partials/nav.ejs") %>
+
+    <main>
+      <div
+        class="container flex flex-col justify-center my-auto mx-auto py-32 mb-4 text-center"
+      >
+        <h2 class="text-8xl font-extrabold">404</h2>
+
+        <div class="mt-5">
+          <p>Oops! This Page Was Not found!!!</p>
+        </div>
+
+        <div class="mt-4">
+          <a href="/"
+            >Back to <span class="underline text-red-400">Home</span>?</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <%- include ("./partials/footer.ejs") %>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <%- include('./partials/head.ejs') %>
+  <body class="h-full">
+    <%- include ("./partials/nav.ejs") %>
+
+    <header>
+      <div
+        class="h-auto bg-cover bg-center bg-blend-darken px-16 py-44 bg-no-repeat"
+        style="background-image: url(/images/bg-main.png)"
+      >
+        <div class="container mx-auto px-10">
+          <div class="text-white grid grid-flow-row grid-cols-3">
+            <div class="col-span-2">
+              <h3 class="pb-4 text-4xl font-semibold">
+                Your favorite songs directory is here!
+              </h3>
+
+              <div class="text-lg mt-2">
+                <p>Looking for a way to pin down you most favorite songs?</p>
+                <p>
+                  Search no more, and try
+                  <span class="font-bold tracking-wider underline">famuz</span>
+                  now.
+                </p>
+              </div>
+
+              <button
+                class="mt-8 border-white rounded-sm px-4 py-3 border-2 transition duration-700 hover:-translate-y-1 font-bold shrink-0 text-base hover:border-red-400 hover:text-red-400 hover:bg-gray-100"
+                onclick="window.location.href='/muz'"
+              >
+                Try It Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- what is famuz -->
+      <div class="flex flex-row">
+        <!-- row 1 -->
+        <div class="basis-1/2 py-20">
+          <h2 class="text-center text-3xl py-2">
+            What is <span class="font-bold font-mono text-red-400">famuz</span>?
+          </h2>
+
+          <div class="px-16 my-3 text-center">
+            <p class="font-sans tracking-wide">
+              Quickly create, update, delete, and view your latest favorite
+              songs here. Lorem ipsum dolor sit, amet consectetur adipisicing
+              elit. Autem vel suscipit dolore, et cupiditate asperiores?.
+            </p>
+
+            <p class="font-sans tracking-wide">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+              dolorum! Perferendis dolore totam eveniet consequuntur culpa
+              dolorem hic sint sit reprehenderit distinctio placeat corrupti
+              numquam dolorum odio optio, alias nemo!
+            </p>
+
+            <button
+              class="border-red-500 border-2 text-red-400 font-bold rounded-full px-4 py-3 bg-transparent mt-8 hover:bg-red-400 hover:text-white"
+              onclick="window.location.href='/muz'"
+            >
+              Get Started <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- row 2 -->
+        <div
+          class="basis-1/2 bg-gradient-to-l from-orange-500 to-red-300 py-20"
+        >
+          <img
+            src="/images/album.png"
+            alt="album"
+            style="height: 380px"
+            class="mx-auto"
+          />
+        </div>
+      </div>
+
+      <!-- funny bg -->
+      <div class="bg-gradient-to-r from-gray-300 h-full">
+        <div class="container mx-auto">
+          <div class="grid grid-flow-row grid-cols-2 py-16">
+            <div class="flex flex-row justify-center">
+              <img
+                src="/images/mic.png"
+                style="height: 250px"
+                class=""
+                alt=""
+              />
+            </div>
+
+            <div class="flex flex-row justify-center">
+              <div class="text-center">
+                <h3 class="font-sans text-3xl font-bold text-red-500">
+                  Just Your favorites
+                </h3>
+
+                <p class="my-8 px-4 text-lg">
+                  Take another step forward in building up your music listening
+                  habits!
+                </p>
+
+                <button
+                  class="bg-red-500 text-white py-3 px-4 rounded-md hover:bg-red-600 animate-pulse"
+                  onclick="window.location.href='/muz'"
+                >
+                  Get Started <i class="ml-2 fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- random text -->
+      <div class="container mx-auto py-4">
+        <h2 class="font-bold text-3xl text-center py-8">-- Discover How --</h2>
+        <div class="grid grid-flow-row grid-cols-2 pb-8">
+          <div class="p-3">
+            <h3 class="my-4 text-2xl font-bold">Step 01/</h3>
+
+            <p class="font-light text-lg">
+              Create as many lists you want. You just create a list, or many
+              list indicating the the category of song/music you want to save a
+              reference then move to the next step. That simple, ain't it?
+            </p>
+
+            <button
+              class="text-gray-100 font-bold to-red-300 from-orange-600 bg-gradient-to-tr transition duration-700 px-6 py-3 mt-6 rounded-md hover:to-orange-700 hover:from-red-400 animate-wiggle"
+              onclick="window.location.href='/muz'"
+            >
+              Let's do it!
+
+              <i class="fas fa-chevron-right ml-2 transition duration-500"></i>
+            </button>
+          </div>
+          <!--  -->
+          <div class="p-3">
+            <h3 class="my-4 text-2xl font-bold">Step 02/</h3>
+
+            <p class="font-light text-lg">
+              Add your songs. Key in some name/title of the song, add a url
+              (optional), dump in some lyrics (optional), add some description
+              (optional) and you're good to go!
+            </p>
+
+            <button
+              class="text-gray-100 font-bold from-red-300 to-orange-600 bg-gradient-to-tr transition duration-700 px-6 py-3 mt-6 rounded-md hover:from-orange-700 hover:to-red-400 animate-wiggle"
+              onclick="window.location.href='/muz'"
+            >
+              Okay let's go!
+
+              <i class="fas fa-chevron-right ml-2 transition duration-500"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- fixed image section -->
+      <div
+        class="min-h-screen max-h-screen bg-cover bg-blend-multiply bg-fixed relative bg-no-repeat"
+        style="
+          background-image: linear-gradient(
+              rgba(173, 99, 56, 0.9),
+              rgba(35, 35, 36, 0.9)
+            ),
+            url(/images/bg-muz.jpg);
+        "
+      >
+        <div class="container mx-auto">
+          <div class="flex flex-row">
+            <div class="basis-1/2 pt-16">
+              <img
+                src="/images/artists.png"
+                alt="artists"
+                style="height: 450px"
+              />
+            </div>
+            <div class="basis-1/2 py-40 text-center">
+              <h3 class="py-3 text-4xl text-white">Your Favorite Genres</h3>
+
+              <p class="text-xl py-3 tracking-wide text-white">
+                Categorize your favorite songs into various genres/categories.
+              </p>
+
+              <button
+                class="text-xl rounded-full px-6 py-4 border-2 border-orange-600 text-white mt-6 transition duration-700 hover:bg-orange-700 hover:text-gray-200 hover:font-bold"
+                onclick="window.location.href='/muz'"
+              >
+                Give it a try!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include ("./partials/footer.ejs") %>
+  </body>
+</html>

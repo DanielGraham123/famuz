@@ -1,0 +1,179 @@
+<form
+  class="px-6 py-7 space-y-4 lg:px-8 sm:pb-6 xl:pb-8"
+  action="<% if (text === 'new') { %>/muz-center/songs/new<% } else { %>/muz-center/songs/edit/<%= song._id %><% }%>"
+  method="<% if (text === 'new') { %>post<% } else { %>post<% } %>"
+  enctype="multipart/form-data"
+>
+  <h2 class="text-2xl font-medium text-red-500">
+    <i
+      class="far fa-sm fa-arrow-left mr-2 cursor-pointer hover:text-gray-800"
+      onclick="window.history.back()"
+    ></i>
+    Add a Song <%= text %>
+  </h2>
+
+  <!-- Song inputs -->
+  <div class="grid grid-6 grid-cols-2 gap-3">
+    <!-- song title -->
+    <div>
+      <label for="title" class="block mb-2 text-sm font-medium text-gray-900"
+        >Song title</label
+      >
+      <input type="text" name="title" id="title" class="bg-gray-50 border
+      border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500
+      focus:border-none block w-full p-2.5" placeholder="Holy pop sound"
+      required value="<% if (text == "edit") { %><%= song.title %><% } %>" />
+    </div>
+
+    <!-- song category -->
+    <div>
+      <label for="category" class="block mb-2 text-sm font-medium text-gray-900"
+        >Category</label
+      >
+
+      <select
+        name="category"
+        id="category"
+        class="form-select border border-gray-300 focus:border-red-500 w-full p-2.5 rounded-lg bg-gray-50 ext-gray-900 text-sm capitalize"
+      >
+        <option
+          value=""
+          <% if (text == 'new') { %>selected<% }  %>
+        >
+          Select Category
+        </option>
+        <% if (categories.length > 0) { %> <% categories.forEach(category => {
+        %>
+        <option
+          value="<%= category._id.toString() %>"
+          class=""
+          <% if ( text== 'edit' && song.category.toString() === category._id.toString() ) { %> selected <% }  %>
+        >
+          <%= category.name %>
+        </option>
+
+        <% }) %> <% } %>
+      </select>
+    </div>
+
+    <!-- song author -->
+    <div>
+      <label for="author" class="block mb-2 text-sm font-medium text-gray-900"
+        >Author?</label
+      >
+      <input
+        type="text"
+        name="author"
+        id="author"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+        placeholder="Shakespear"
+        value="<% if (text == 'edit') { %><%= song.author %><% } %>"
+      />
+      <div class="mt-1 mx-1 text-xs text-gray-500 italic" id="user_avatar_help">
+        It's optional though
+      </div>
+    </div>
+
+    <!-- song image -->
+    <div>
+      <label for="image" class="block mb-2 text-sm font-medium text-gray-900"
+        >Song Image</label
+      >
+      <input
+        type="file"
+        name="image"
+        id="image"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+        value="<% if (text == 'edit') { %><%= song.image %><% } %>"
+      />
+      <div class="mt-1 mx-1 text-xs text-gray-500 italic" id="user_avatar_help">
+        Any Song image could be useful but optional
+      </div>
+    </div>
+
+    <!-- song description -->
+    <div class="">
+      <label
+        for="description"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Song Description</label
+      >
+
+      <!-- some description -->
+      <textarea
+        name="description"
+        id="description"
+        class="form-textarea bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-red-400 w-full"
+        rows="2"
+      >
+<% if (text=='edit') { %><%= song.description %><% } %></textarea>
+
+      <div class="mt-1 mx-1 text-xs text-gray-500 italic" id="user_avatar_help">
+        It's optional too
+      </div>
+    </div>
+
+    <!-- song url -->
+    <div>
+      <label for="url" class="block mb-2 text-sm font-medium text-gray-900"
+        >Any Url?</label
+      >
+      <input
+        type="url"
+        name="url"
+        id="url"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+        placeholder="https://some-url-here.come"
+        value="<% if (text == 'edit') { %><%= song.url %><% } %>"
+      />
+      <div class="mt-1 mx-1 text-xs text-gray-500 italic" id="user_avatar_help">
+        Yeah, it's optional
+      </div>
+    </div>
+    
+          <!-- song cloud id -->
+<input type="hidden" name="cloud_id" value="<% if (text == 'edit') { %><%= song.songCloud_id %><% } %>">
+
+    <!-- song lyrics -->
+    <div class="col-span-2">
+      <label
+        for="lyrics"
+        class="block mb-2 text-sm font-medium text-center text-gray-900"
+        ><span>Got Some Lyrics?</span>
+        <div
+          class="mx-1 text-xs text-gray-500 italic"
+          id="user_avatar_help text-center"
+        >
+          it's optional
+        </div>
+      </label>
+      
+
+      <!-- froala rich text  -->
+      <textarea
+        id="lyrics"
+        name="lyrics"
+        class="overflow-y-scroll form-textarea h-64"
+      >
+<% if (text == 'edit') { %><%- song.lyrics %><% } %></textarea
+      >
+    </div>
+  </div>
+
+  <div class="flex items-center space-x-2 py-2 justify-end">
+    <!-- <button
+      type="button"
+      class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      
+    >
+      eset
+    </button> -->
+
+    <button
+      type="submit"
+      class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:border-none font-medium rounded-lg text-sm px-7 py-2.5 text-center"
+    >
+      Save
+    </button>
+  </div>
+</form>

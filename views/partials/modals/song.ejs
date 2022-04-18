@@ -1,0 +1,181 @@
+<!-- Main modal -->
+<div
+  id="song-modal"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
+>
+  <div class="relative p-4 w-full max-w-3xl md:h-auto">
+    <!-- Modal content -->
+    <div class="to-gray-300 from-gray-100 bg-gradient-to-tr shadow">
+      <div class="flex justify-end p-2">
+        <button
+          type="button"
+          class="text-red-500 bg-transparent hover:bg-red-500 hover:text-white rounded-full text-sm p-2 ml-auto inline-flex items-center mr-2 mt-2"
+          data-modal-toggle="song-modal"
+        >
+          <i class="fal fa-lg fa-times"></i>
+        </button>
+      </div>
+      <form class="px-6 pb-4 space-y-4 lg:px-8 sm:pb-6 xl:pb-8" action="#">
+        <h2 class="text-2xl font-medium text-red-500">Add a Song</h2>
+
+        <!-- Song inputs -->
+        <div class="grid grid-6 grid-cols-2 gap-3">
+          <!-- song title -->
+          <div>
+            <label
+              for="title"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Song title</label
+            >
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+              placeholder="Pop"
+              required
+            />
+          </div>
+
+          <!-- song category -->
+          <div>
+            <label
+              for="category"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Category</label
+            >
+
+            <select
+              name="category"
+              id="category"
+              class="form-select border border-gray-300 focus:border-red-500 w-full p-2.5 rounded-lg bg-gray-50 ext-gray-900 text-sm"
+            >
+              <option value="">Song Category</option>
+              <option value="">Pop</option>
+              <option value="">Gospel</option>
+              <option value="">Rap</option>
+              <option value="">Blues</option>
+              <option value="">Makossa</option>
+            </select>
+          </div>
+
+          <!-- song author -->
+          <div>
+            <label
+              for="author"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Author?</label
+            >
+            <input
+              type="text"
+              name="author"
+              id="author"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+              placeholder="Shakespear"
+              required
+            />
+            <div
+              class="mt-1 mx-1 text-xs text-gray-500 italic"
+              id="user_avatar_help"
+            >
+              It's optional though
+            </div>
+          </div>
+
+          <!-- song image -->
+          <div>
+            <label
+              for="cImage"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Song Image</label
+            >
+            <input
+              type="file"
+              name="cImage"
+              id="cImage"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+            />
+            <div
+              class="mt-1 mx-1 text-xs text-gray-500 italic"
+              id="user_avatar_help"
+            >
+              Any Song image could be useful but optional
+            </div>
+          </div>
+
+          <!-- song description -->
+          <div class="">
+            <label
+              for="description"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Song Description</label
+            >
+
+            <!-- some description -->
+            <textarea
+              name="description"
+              id="description"
+              class="form-textarea bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-red-400 w-full"
+              rows="2"
+            ></textarea>
+
+            <div
+              class="mt-1 mx-1 text-xs text-gray-500 italic"
+              id="user_avatar_help"
+            >
+              It's optional too
+            </div>
+          </div>
+
+          <!-- song url -->
+          <div>
+            <label
+              for="url"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Any Url?</label
+            >
+            <input
+              type="url"
+              name="url"
+              id="url"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-none block w-full p-2.5"
+              placeholder="https://some-url-here.come"
+              required
+            />
+            <div
+              class="mt-1 mx-1 text-xs text-gray-500 italic"
+              id="user_avatar_help"
+            >
+              Yeah, it's optional
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2 py-2 justify-between">
+          <div>
+            <a href="/muz-center/songs/lyrics" class="font-lightt text-pink-500 hover:underline">Add this song's lyrics here</a>
+          </div>
+
+          <div class="">
+            <button
+              type="button"
+              class="text-white bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              data-modal-toggle="song-modal"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:border-none font-medium rounded-lg text-sm px-7 py-2.5 text-center"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

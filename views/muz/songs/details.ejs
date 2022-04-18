@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <%- include('../../partials/head.ejs') %>
+  <body class="h-full">
+    <%- include ("../../partials/nav.ejs") %>
+
+    <header
+      class="bg-cover bg-center text-center my-auto h-60 w-full py-24 text-white bg-blend-multiply"
+      style="
+        background-image: linear-gradient(
+            rgba(117, 69, 54, 0.9),
+            rgba(35, 35, 36, 0.9)
+          ),
+          url(/images/bg-notes.jpg);
+      "
+    >
+      <h4 class="text-2xl">
+        Manage your
+        <span
+          class="tracking-wide underline font-bold hover:text-red-400 cursor-pointer"
+          >famuz</span
+        >
+        Songs
+      </h4>
+    </header>
+
+    <main class="container mx-auto">
+      <div class="grid grid-flow-row grid-cols-4">
+        <!-- side nav -->
+        <%- include ("../../partials/side-nav.ejs") %>
+
+        <!-- content -->
+        <div class="col-span-3 py-8">
+          <div class="grid grid-cols-3">
+            <!-- song image -->
+            <div class="">
+              <img
+                src="<% if (details.image) { %>
+                 <%= details.image %> 
+                <% } else { %>/images/song-default.png<% } %> "
+                alt="song image"
+                class="rounded-lg bg-cover bg-center h-48 w-full"
+              />
+
+              <!-- description -->
+              <div class="text-md font-light mt-2">
+                <% if (details.description) { %> <%= details.description %> <% }
+                else { %>
+                <p class="italic">No provided description.</p>
+                <% } %>
+              </div>
+
+              <div class="pb-4 pt-4 flex flex-row justify-between items-center">
+                <div>
+                  <p class="text-xs">
+                    <span class="font-light">Created,</span> <%=
+                    moment(details.createdAt).startOf('hour').fromNow() %>
+                  </p>
+                </div>
+
+                <!-- actions -->
+                <div class="text-sm font-light">
+                  <button
+                    class="space-x-3 mr-3 hover:font-bold text-green-600"
+                    type="button"
+                    onclick="window.location.href='/muz-center/songs/edit/<%= details._id.toString() %> '"
+                  >
+                    <i class="fad fa-pencil"></i>
+                    Edit
+                  </button>
+                  <button
+                    class="space-x-3 hover:font-bold text-red-600"
+                    type="button"
+                    onclick="deleteSong(`<%= details._id %>`)"
+                  >
+                    <i class="fad fa-trash"></i>
+                    Delete
+                  </button>
+                </div>
+
+                <!-- dropdown -->
+                <div
+                  id="dropdown"
+                  class="hidden z-10 w-36 bg-gray-200 rounded divide-y divide-gray-100 shadow-md"
+                >
+                  <ul
+                    class="py-1 text-sm text-gray-700 dark:text-gray-600"
+                    aria-labelledby="dropdownDefault"
+                  >
+                    <li>
+                      <a href="#" class="block py-2 px-4 hover:bg-gray-300"
+                        >Song</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="block py-2 px-4 hover:bg-gray-300"
+                        >Lyrics</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- song info -->
+            <div class="col-span-2 ml-4">
+              <!-- title -->
+              <h3
+                class="text-2xl text-gray-600 font-semibold drop-shadow-xl capitalize pb-2"
+              >
+                <%= details.title %>
+              </h3>
+
+              <!-- url -->
+              <a
+                href="<%= details.url %>"
+                target="_blank"
+                class="text-md underline text-fuchsia-600"
+              >
+                <%= details.url %>
+              </a>
+
+              <!-- author -->
+              <div class="mt-3">
+                <span class="font-light">By:</span>
+                <span class="text-md font-medium tracking-wider"
+                  ><%= details.author %>
+                </span>
+              </div>
+
+              <!-- category -->
+              <div class="">
+                <span class="font-light">Category:</span>
+                <span class="text-sm font-sans">
+                  <%= details.category.name %>
+                </span>
+              </div>
+
+              <!-- lyrics -->
+              <div class="pt-5 text-gray-600 text-md">
+                <% if (details.lyrics) { %> <%- details.lyrics %> <% } else { %>
+                <p class="italic font-light">No lyrics provided</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <%- include ("../../partials/footer.ejs") %>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+  <%- include('../../partials/head.ejs') %>
+  <body class="h-full">
+    <%- include ("../../partials/nav.ejs") %>
+
+    <header
+      class="bg-cover bg-center text-center my-auto h-60 w-full py-16 text-white bg-blend-multiply"
+      style="
+        background-image: linear-gradient(
+            rgba(117, 69, 54, 0.9),
+            rgba(35, 35, 36, 0.9)
+          ),
+          url(/images/bg-notes.jpg);
+      "
+    >
+      <h4 class="text-2xl">
+        Manage your
+        <span
+          class="tracking-wide underline font-bold hover:text-red-400 cursor-pointer"
+          >famuz</span
+        >
+        Songs
+      </h4>
+
+      <button
+        class="text-md bg-pink-600 text-white font-bold py-4 px-6 pr-7 sahdow-md mx-auto mt-5 mb-8 hover:bg-pink-700 rounded-full"
+        onclick="window.location.href='/muz-center/songs/new'"
+      >
+        <i class="fas fa-music-alt animate-pulse fa-1x"></i>
+        New Song
+      </button>
+    </header>
+
+    <main class="container mx-auto">
+      <div class="grid grid-flow-row grid-cols-4">
+        <!-- side nav -->
+        <%- include ("../../partials/side-nav.ejs") %>
+
+        <div class="col-span-3 py-6">
+          <!-- top -->
+          <%- include('../../partials/muz-top.ejs') %>
+
+          <!-- songs list -->
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <% songs.forEach(song => { %>
+            <div
+              class="h-56 border-gray-400 bg-gradient-to-bl from-slate-100 to-gray-300 shadow-lg border-2 rounded-lg hover:from-red-600 hover:to-pink-500 hover:bg-gradient-to-tr hover:text-white cursor-pointer"
+              type="button"
+            >
+              <div class="p-3 grid grid-flow-row grid-cols-5">
+                <div class="col-span-3">
+                  <a
+                    href="/muz-center/songs/<%= song._id %> "
+                    class="text-lg font-semibold hover:underline"
+                  >
+                    <%= song.title %>
+                  </a>
+                  <% if (song.description) { %>
+
+                  <p class="mt-2 break-words line-clamp-4">
+                    <%= song.description %>
+                  </p>
+
+                  <% } else { %>
+                  <p class="font-light italic mt-2">
+                    No description available.
+                  </p>
+                  <% } %>
+                </div>
+
+                <div class="ml-3 col-span-2">
+                  <img
+                    src="<% if (song.image) { %>
+                     <%= song.image %> 
+                    <% } else { %>/images/music.png<% } %> "
+                    class="bg-cover bg-center rounded-lg w-full"
+                    style="height: 150px"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <!-- card footer -->
+              <div
+                class="px-3 pb-4 pt-2 flex flex-row justify-between items-center"
+              >
+                <div>
+                  <p class="text-sm">
+                    Updated: <%=
+                    moment(song.updatedAt).startOf('hour').fromNow() %>
+                  </p>
+                </div>
+
+                <!-- actions -->
+                <div class="text-sm font-light">
+                  <button
+                    class="space-x-3 mr-3 hover:font-bold"
+                    type="button"
+                    onclick="window.location.href='/muz-center/songs/edit/<%= song._id.toString() %> '"
+                  >
+                    <i class="far fa-pencil"></i>
+                    Edit
+                  </button>
+                  <button
+                    class="space-x-3 hover:font-bold"
+                    type="button"
+                    onclick="deleteSong(`<%= song._id %>`)"
+                  >
+                    <i class="far fa-trash"></i>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+
+      <%- include('../../partials/modals/song.ejs') %>
+    </main>
+
+    <%- include ("../../partials/footer.ejs") %>
+  </body>
+</html>

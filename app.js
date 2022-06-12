@@ -8,9 +8,14 @@ const reload = require("reload");
 const mainPages = require("./mainpages");
 const muzRoutes = require("./routes/muzRoutes");
 const ejs = require("ejs");
+const http = require("http");
 
 const app = express();
+const server = http.createServer(app);
+
 dotenv.config();
+
+app.set("port", process.env.PORT || 5000);
 
 app.locals.moment = moment;
 app.locals.ejs = ejs;
@@ -52,3 +57,5 @@ reload(app);
 app.use((req, res) => {
   res.status(404).render("404", { title: "404", mainPages, req_url: req.url });
 });
+
+server.listen(process.env.PORT || 5000);
